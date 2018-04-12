@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- mapper标签的namespace属性指向的是我们的dao（接口） -->
+<mapper namespace="com.evaluation.dao.UserMapper">
+	<!-- resultMap标签的id属性是一个标识，
+	它的type属性指向的是创建的对象（数据库一张表对应一个对象，并且属性一一对应） -->
+	<resultMap id="BaseResultMap" type="com.evaluation.entity.User">
+		<!-- id标签它对应的是数据库的主键，
+		它的column属性指代的是数据库的字段，
+		jdbcType属性指代的是数据库字段的类型, 
+		property属性指代的是对象的属性名称 -->
+		<id column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="zh" property="zh" jdbcType="VARCHAR"/>
+		<result column="mm" property="mm" jdbcType="VARCHAR"/>
+		<result column="xm" property="xm" jdbcType="VARCHAR"/>
+		<result column="bm" property="bm" jdbcType="VARCHAR"/>
+		<result column="zw" property="zw" jdbcType="VARCHAR"/>
+		<result column="zt" property="zt" jdbcType="VARCHAR"/>
+		<result column="deleteflag" property="deleteflag" jdbcType="VARCHAR"/>
+		<result column="opratetime" property="opratetime" jdbcType="TIMESTAMP"/>
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<!-- sql标签是公用标签 -->
+	<sql id="base_sql">id, zh, mm, xm, bm, zw, zt, deleteflag, opratetime, createtime</sql>
+	
+	<!-- 根据账号密码查询用户信息 -->
+	<select id="getUserByZhxx" parameterType="java.lang.String" resultType="com.evaluation.entity.User">
+		select <include refid="base_sql" /> from tb_users
+		where deleteflag != 'D'
+		and zh = #{zh}
+		and mm = #{mm}
+	</select>
+	
+	<!-- 根据用户编号查询用户信息 -->
+	<select id="getUserById" parameterType="java.lang.String" resultType="com.evaluation.entity.User">
+		select <include refid="base_sql" /> from tb_users
+		where deleteflag != 'D'
+		and id = #{id}
+	</select>
+	
+	<!-- 查询所有用户信息 -->
+	<select id="getAllUsers" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select <include refid="base_sql" /> from tb_users
+		where deleteflag != 'D'
+		<if test="xm != '' and xm != null">
+			and xm = #{xm}
+		</if>
+		<if test="zw != '' and zw != null">
+			and zw = #{zw}
+		</if>
+	</select>
+	
+	<!-- 插入用户信息 -->
+	<insert id="insertUser" parameterType="com.evaluation.entity.User">
+		insert into tb_users 
+		(<include refid="base_sql" />) 
+		values (#{id}, #{zh}, #{mm}, #{xm}, #{bm}, #{zw}, #{zt}, 
+		#{deleteflag}, #{opratetime}, #{createtime})
+	</insert>
+	
+	<!-- 删除用户 -->
+	<update id="deleteUser" parameterType="java.lang.String">
+		update tb_users set
+		deleteflag = 'D',
+		opratetime = now()
+		where id = #{id}
+	</update>
+	
+	<!-- 重置密码 -->
+	<update id="resetPassword" parameterType="java.lang.String">
+		update tb_users set
+		mm = '111111',
+		deleteflag = 'U',
+		opratetime = now()
+		where deleteflag != 'D'
+		and id = #{id}
+	</update>
+	
+	<!-- 查询考评对象 -->
+	<select id="getKpdx" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select <include refid="base_sql" /> from tb_users
+		where deleteflag != 'D'
+		<if test="xm != '' and xm != null">
+			and xm = #{xm}
+		</if>
+	</select>
+	
+</mapper>

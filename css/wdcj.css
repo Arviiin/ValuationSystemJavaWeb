@@ -1,0 +1,45 @@
+.wdcj-content{
+    margin: auto;
+    width: 845px;
+}
+.wdcj-title{
+    text-align: center;
+}
+.wdcj-bottom {
+    height: 94px;
+    padding-top: 50px;
+    width: 100%;
+    text-align: center;
+}
+.wdcj-main{
+    width: 835px;
+    height: 680px;
+}
+.wdcj-main-left,.wdcj-main-right{
+    height: 680px;
+    position: relative;
+    width: 102px;
+}
+.wdcj-main-left > a {
+    left: 0;
+    position: absolute;
+    top: 50%;
+}
+.wdcj-main-right >a{
+    left: 35px;
+    position: absolute;
+    top: 50%;
+}
+
+.wdcj-bycj{
+    background: rgba(0, 0, 0, 0) url("../images/bg_sk.png") no-repeat scroll center center;
+    border-radius: 130px;
+    font-size: 26px;
+    height: 248px;
+    text-align: center;
+    width: 248px;
+    margin: auto;
+}
+.wdcj-bycj p{
+    padding-top: 100px;
+}

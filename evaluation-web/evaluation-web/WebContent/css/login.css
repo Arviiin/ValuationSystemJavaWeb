@@ -1,0 +1,70 @@
+@charset "utf-8";
+/* CSS Document */
+.ad-layout-box{
+	background-image: url("../images/bg_img.png");
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	width:100%;
+	height: 100%;
+	min-height: 650px;
+}
+.ad-layout-box .ad-page-footer{
+	position: absolute;
+	bottom: 0px;
+}
+.add-dl-table{
+	background: #F2F2F2;
+	padding: 30px 40px;
+	width: 380px;
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 10px;
+	margin: auto;
+	margin-top: 30%;
+}
+.add-dl-table span{
+	float:right;
+}
+.add-dl-table span:hover{
+	color: #0080cc;
+}
+.add-dl-srk{
+	height: 40px;
+	width: 303px;
+	margin-bottom: 30px;
+
+}
+.add-dl-srk input[type="text"],
+.add-dl-srk input[type="password"]{
+	float: left;
+	width: 100%;
+	height: 40px;
+	line-height: 36px;
+	padding: 0 10px;
+	margin: -1px -1px -1px 0px;
+	border: 1px solid #CCC;
+	border-radius: 4px;
+	text-align: center;
+}
+.login-box{
+	padding: 20px 0px;
+}
+.btn_login{
+	background: #920d14 none repeat scroll 0 0;
+	/*letter-spacing: 20px;*/
+	color: #FFFFFF;
+	height: 44px;
+	width: 100%;
+	text-align: center;
+}
+.btn_login:hover, .btn_login:focus{
+	background: #E74836;
+	color: #FFF;
+}
+.btn_login_tz:hover, .btn_login_tz:focus{
+	background: #06A6DB;
+	color: #FFF;
+}
+

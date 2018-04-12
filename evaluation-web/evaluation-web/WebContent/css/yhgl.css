@@ -1,0 +1,80 @@
+/*用户管理css*/
+.yhgl-content{
+    margin: auto;
+    width: 634px;
+}
+.yhgl-add-btn{
+    text-align: right;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.yhgl-add-btn input{
+    margin-left: 20px;
+}
+.kpxt-table tr td a{
+    margin-right: 10px;
+}
+/*弹出框*/
+.yhgl-add{
+    background-color: #ffffff;
+    margin: auto;
+    width: 485px;
+    height:320px;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    margin:0 0 0 -250px;
+    display:block;
+}
+.yhgl-add-title{
+    height: 47px;
+    background-color: #920C13;
+    text-align:center;
+    line-height: 47px;
+    font-size: 18px;
+    color: #ffffff;
+}
+.yhgl-add table{
+    text-align: center;
+    width: 100%;
+    margin: 10px;
+}
+.yhgl-add table tr{
+    height: 50px;
+}
+.yhgl-add table th{
+    text-align: right;
+    color: #797979;
+    vertical-align: middle;
+}
+.yhgl-add table td{
+    text-align: left;
+}
+.yhgl-add table td input,.yhgl-add table td select{
+    width: 140px;
+    height: 35px;
+}
+.yhgl-add table td textarea{
+    width: 345px;
+    height: 90px;
+}
+.yhgl-add table td input.yhgl-add-bz{
+    width: 380px;
+    height: 88px;
+}
+.yhgl-add table th.yhgl-add-th{
+    vertical-align: top;
+    text-align: right;
+}
+.yhgl-add-xzbtn{
+    text-align: center;
+}
+.yhgl-add-xzbtn input{
+    margin-left: 20px;
+}
+.yhgl-add-title > a{
+    float: right;
+    height: 17px;
+    margin-right: 13px;
+    width: 17px;
+}

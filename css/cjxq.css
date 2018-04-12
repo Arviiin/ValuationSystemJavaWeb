@@ -1,0 +1,32 @@
+.cjxq-content{
+    margin: auto;
+    width: 845px;
+}
+.cjxq-title{
+    text-align: center;
+}
+.cjxq-bottom {
+    height: 94px;
+    padding-top: 50px;
+    width: 100%;
+    text-align: center;
+}
+.cjxq-main{
+    width: 835px;
+    height: 680px;
+}
+.cjxq-main-left,.cjxq-main-right{
+    height: 680px;
+    position: relative;
+    width: 102px;
+}
+.cjxq-main-left > a {
+    left: 0;
+    position: absolute;
+    top: 50%;
+}
+.cjxq-main-right >a{
+    left: 35px;
+    position: absolute;
+    top: 50%;
+}

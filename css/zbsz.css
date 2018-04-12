@@ -1,0 +1,116 @@
+/*指标设置css*/
+.zbsz-content{
+    margin: auto;
+    width: 634px;
+}
+.zbsz-add-btn{
+    text-align: right;
+    margin-bottom: 20px;
+}
+.zbsz-add-btn input{
+    margin-left: 20px;
+}
+
+/*弹出框*/
+.zbsz-add{
+    background-color: #ffffff;
+    margin: auto;
+    width: 475px;
+    height: 518px;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    margin:-60px 0 0 -250px;
+    display:block;
+}
+.zbsz-add-title{
+    height: 47px;
+    background-color: #920C13;
+    text-align:center;
+    line-height: 47px;
+    font-size: 18px;
+    color: #ffffff;
+}
+.zbsz-add table{
+    text-align: center;
+    width: 100%;
+    margin: 10px;
+}
+.zbsz-add table tr{
+    height: 50px;
+}
+.zbsz-add table th{
+    text-align: right;
+    color: #797979;
+    vertical-align: middle;
+}
+.zbsz-add table td{
+    text-align: left;
+}
+.zbsz-add table td input{
+    width: 140px;
+    height: 35px;
+}
+.zbsz-add table td input.zbsz-add-khzb{
+    width: 345px;
+    height: 88px;
+}
+.zbsz-add table th.zbsz-add-th{
+    vertical-align: top;
+    text-align: right;
+}
+.zbsz-add table th{
+    width: 90px;
+    vertical-align: top;
+    padding-top: 5px;
+}
+.zbsz-add-xzbtn{
+    text-align: center;
+}
+.zbsz-add-xzbtn input{
+    margin-left: 20px;
+}
+.zbsz-add-title > a{
+    float: right;
+    height: 17px;
+    margin-right: 13px;
+    width: 17px;
+}
+.wd-40{
+    width:40px!important;
+}
+.wd-215{
+    width:215px!important;
+}
+.zbsz-add td table{
+    width:345px;
+    border:1px #a9c6c9 solid;
+    margin: 0px;
+}
+.zbsz-add td table th,.zbsz-add td table td{
+    border:1px #a9c6c9 solid;
+    text-align: center;
+    height:25px;
+    line-height: 25px;
+}
+.zbsz-add td table td input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+}
+.zbsz-add td table tr:nth-child(odd){
+    background-color: #f2e5e5;
+}
+.zbsz-add td table .zbsz-add-addbtn{
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #c1c1c1;
+    border-radius: 3px;
+    color: #c1c1c1;
+    cursor: pointer;
+    font-size: 13px;
+    height: 20px;
+    text-align: center;
+    width: 70px;
+}
+.zbsz-add table th.zbsz-add-fzpad{
+    padding-top: 15px;
+}

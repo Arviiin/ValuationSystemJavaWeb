@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- Spring相关注解(开启) -->
+	<context:annotation-config />
+
+	<!-- 扫描Dao及Service Spring容器提供实例化 -->
+	<context:component-scan base-package="com.evaluation" use-default-filters="false">
+		<context:include-filter type="regex" expression="com.evaluation.dao.*" />
+		<context:include-filter type="regex" expression="com.evaluation.service.*" />
+		<!-- springMVC相应配置文件中已扫描Controller，这里我们不需要重复扫描，所以排除 -->
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+	<!-- 连接数据源配置信息 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/kpxt?characterEncoding=UTF-8" />
+		<property name="username" value="root" />
+		<property name="password" value="pass123" />
+	</bean>
+
+	<!-- 开启session会话 并获取mybatis映射的xml -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:com/evaluation/xml/**/*.xml" />
+	</bean>
+	
+	<!-- mybatis开启会话执行配置器 -->
+	<bean id="mapperScanCfg" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.evaluation.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+</beans>

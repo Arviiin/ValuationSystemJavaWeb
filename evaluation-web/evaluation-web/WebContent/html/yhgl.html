@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>用户管理</title>
+<link href="../css/common.css" rel="stylesheet" />
+<link href="../css/yhgl.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="header">
+		<div>
+			<img src="../images/logo_s.png" alt="" />
+		</div>
+	</div>
+	<div class="content"></div>
+	<div class="footer">
+		<div>
+			<img src="../images/footer_logo.png" alt="" />
+			<div class="copyright">
+				<div class="copyright_a">
+					<span>关于我们</span> <span>科技产业</span> <span>校友中心</span> <span>国际合作</span>
+					<span>政策法规</span> <span>院长信箱</span> <span>联系我们</span> <span><img
+						src="../images/foot_icon.png" alt="" /></span>
+				</div>
+				<div class="copyright_b">
+					<span>山东大学苏州研究院版权所有&nbsp;®&nbsp;2015-2017</span> <span>地址：苏州工业园区纳米技术国家大学科技园H幢522室</span>
+					<span>邮编：215123</span> <span>传真：0512-62897969</span> <span>值班电话：0512-62898859</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="yhgl-add" hidden>
+		<div class="nav"></div>
+		<div class="yhgl-add">
+			<!--弹出框-->
+			<div class="yhgl-add-title">
+				新增 <a class="cancel" href="javascript:void(0)">
+						<img src="../images/cancel.png" alt="" />
+					</a>
+			</div>
+			<div>
+				<table>
+					<tr>
+						<th>姓名:</th>
+						<td><input id="dialog-xm" type="text" /></td>
+						<th>账号：</th>
+						<td><input id="dialog-zh" type="text" /></td>
+					</tr>
+					<tr>
+						<th>职位:</th>
+						<td>
+							<select id="dialog-zw">
+								<option value="0">请选择</option>
+								<option value="1">人事主管</option>
+								<option value="2">软件工程师</option>
+								<option value="3">运维</option>
+								<option value="4">业务分析</option>
+								<option value="5">行政总监</option>
+							</select>
+						</td>
+						<th>部门：</th>
+						<td>
+							<select id="dialog-bm">
+								<option value="0">请选择</option>
+								<option value="1">移动互联研究所</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>备注：</th>
+						<td colspan="3">
+							<textarea id="dialog-bz"></textarea>
+						</td>
+					</tr>
+				</table>
+				<div class="yhgl-add-xzbtn">
+					<input type="button" class="btn confirm" value="确定" />
+					<input type="button" class="btn cancel" value="取消"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../js/common/jquery-1.10.2.min.js"></script>
+<script src="../js/common/storejson2.min.js"></script>
+<script src="../js/common/common.js"></script>
+<script src="../js/common/ractive-legacy.js"></script>
+<script src="../js/yhgl.js"></script>
+<script id="template" type="text/ractive">
+	<div class="content_title">
+		<h1>用户管理</h1>
+	</div>
+	<div class="content_ic"></div>
+	<div class="yhgl-content">
+		<div>
+			<span class="font18">姓名：</span>
+			<input type="text" class="kpxt-input" value="{{xm}}"/>
+			<span class="font18">职位：</span>
+			<select id="zw">
+				{{#each options}}
+					<option value="{{value}}">&nbsp;&nbsp;{{key}}</option>
+				{{/each}}
+			</select>
+			<input type="button" class="btn-search fr" value="查询" on-click="search"/>
+		</div>
+		<div class="yhgl-add-btn">
+			<input type="button" class="btn-add show" value="新增"/>
+			<!--
+               <input type="button" class="btn-add" value="暂离"/>
+			-->
+			<input type="button" class="btn-add" value="批量删除" on-click="batchRemove"/>
+		</div>
+		<table class="kpxt-table">
+			<tr>
+				<th>选择</th>
+				<th>姓名</th>
+				<th>职位</th>
+				<th>操作</th>
+			</tr>
+			{{#if list && list.length > 0}}
+				{{#each list:i}}
+					<tr>
+						<td><input class="check" type="checkbox" value="{{list[i].id}}"/></td>
+						<td>{{list[i].xm}}</td>
+						<td>{{list[i].zwDesc}}</td>
+						<td>
+							<a href="javascript:void(0)" on-click="remove" arg="{{list[i].id}}">删除</a>
+							<a href="javascript:void(0)" on-click="resetPassWd" arg={{list[i].id}}>重置密码</a>
+						</td>
+					</tr>
+				{{/each}}
+			{{else}}
+				<tr>
+					<td colspan="4">暂无数据</td>
+				</tr>
+			{{/if}}
+		</table>
+	</div>
+</script>
+</html>

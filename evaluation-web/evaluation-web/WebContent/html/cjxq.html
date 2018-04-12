@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>成绩详情</title>
+    <link href="../css/common.css" rel="stylesheet" />
+    <link href="../css/cjxq.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="header">
+         <div>
+             <img src="../images/logo_s.png" alt=""/>
+         </div>
+    </div>
+    <div class="content"></div>
+    <div class="footer">
+        <div>
+            <img src="../images/footer_logo.png" alt=""/>
+            <div class="copyright">
+                <div class="copyright_a">
+                    <span>关于我们</span>
+                    <span>科技产业</span>
+                    <span>校友中心</span>
+                    <span>国际合作</span>
+                    <span>政策法规</span>
+                    <span>院长信箱</span>
+                    <span>联系我们</span>
+                    <span><img src="../images/foot_icon.png" alt=""/></span>
+                </div>
+                <div class="copyright_b">
+                    <span>山东大学苏州研究院版权所有&nbsp;®&nbsp;2015-2017</span>
+                    <span>地址：苏州工业园区纳米技术国家大学科技园H幢522室</span>
+                    <span>邮编：215123</span>
+                    <span>传真：0512-62897969</span>
+                    <span>值班电话：0512-62898859</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/common/jquery-1.10.2.min.js"></script>
+<script src="../js/common/storejson2.min.js"></script>
+<script src="../js/common/ractive-legacy.js"></script>
+<script src="../js/common/common.js"></script>
+<script src="../js/cjxq.js"></script>
+<script id="template" type="text/ractive">
+	<div class="content_title">
+        <h1>成绩详情</h1>
+    </div>
+    <div class="content_ic"></div>
+    <div class="cjxq-content">
+        <div class="cjxq-title">
+            <span class="font18">{{khnd}}年{{khyf}}月</span>
+        </div>
+        <div class="cjxq-main">
+        <div class="cjxq-main-left fl">
+            <!-- <a href="#"><img src="../images/left.png" alt="上一月"/></a> -->
+        </div>
+        <table class="kpxt-table fl" >
+            <tr >
+                <th>考核指标</th>
+                <th>满分分值</th>
+                <th>得分</th>
+            </tr>
+			{{#if list && list.length > 0}}
+				{{#each list:i}}
+            		<tr>
+                		<td>{{list[i].zbmc}}</td>
+                		<td>{{list[i].fz}}</td>
+                		<td>{{list[i].fjdf}}</td>
+            		</tr>
+				{{/each}}
+			{{else}}
+				<tr>
+					<td colspan="3">暂无数据</td>
+				</tr>
+			{{/if}}
+        </table>
+        <div class="cjxq-main-right fl">
+            <!-- <a href="#"><img src="../images/right.png" alt="下一月"/></a> -->
+        </div>
+        </div>
+        <div  class="cjxq-bottom">
+            <input type="button" class="btn" value="返回" on-click="back"/>
+        </div>
+    </div>
+</script>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- mapper标签的namespace属性指向的是我们的dao（接口） -->
+<mapper namespace="com.evaluation.dao.KpzbMapper">
+	<!-- resultMap标签的id属性是一个标识，
+	它的type属性指向的是创建的对象（数据库一张表对应一个对象，并且属性一一对应） -->
+	<resultMap id="BaseResultMap" type="com.evaluation.entity.Kpzb" >
+		<!-- id标签它对应的是数据库的主键，
+		它的column属性指代的是数据库的字段，
+		jdbcType属性指代的是数据库字段的类型, 
+		property属性指代的是对象的属性名称 -->
+		<id column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="zbmc" property="zbmc" jdbcType="VARCHAR"/>
+		<result column="fz" property="fz" jdbcType="VARCHAR"/>
+		<result column="deleteflag" property="deleteflag" jdbcType="VARCHAR"/>
+		<result column="opratetime" property="opratetime" jdbcType="TIMESTAMP"/>
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<!-- sql标签是公用标签 -->
+	<sql id="base_sql">id, zbmc, fz, deleteflag, opratetime, createtime</sql>
+	
+	<!-- 获取所有考核指标 -->
+	<select id="getAllKhzb" resultMap="BaseResultMap">
+		select <include refid="base_sql" /> from tb_kpzb
+		where deleteflag != 'D'
+		order by id asc
+	</select>
+	
+	<!-- 根据id查询考核指标 -->
+	<select id="getKpzbById" resultType="com.evaluation.entity.Kpzb">
+		select <include refid="base_sql" /> from tb_kpzb
+		where deleteflag != 'D'
+		and id = #{id}
+	</select>
+	
+	<!-- 插入考核指标 -->
+	<insert id="insertKpzb" parameterType="com.evaluation.entity.Kpzb">
+		insert into tb_kpzb
+		(<include refid="base_sql" />)
+		values (#{id}, #{zbmc}, #{fz}, 
+		#{deleteflag}, #{opratetime}, #{createtime})
+	</insert>
+	
+	<!-- 删除考核指标 -->
+	<update id="deleteKpzb" parameterType="java.lang.String">
+		update tb_kpzb set
+		deleteflag = 'D',
+		opratetime = now()
+		where id = #{id}
+	</update>
+	
+	<!-- 更新考核指标 -->
+	<update id="updateKpzb" parameterType="com.evaluation.entity.Kpzb">
+		update tb_kpzb set
+		zbmc = #{zbmc},
+		fz = #{fz},
+		deleteflag = #{deleteflag},
+		opratetime = #{opratetime}
+		where id = #{id}
+	</update>
+	
+</mapper>

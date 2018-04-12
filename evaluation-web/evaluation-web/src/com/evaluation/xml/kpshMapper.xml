@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- mapper标签的namespace属性指向的是我们的dao（接口） -->
+<mapper namespace="com.evaluation.dao.KpshMapper">
+	<!-- resultMap标签的id属性是一个标识，
+	它的type属性指向的是创建的对象（数据库一张表对应一个对象，并且属性一一对应） -->
+	<resultMap id="BaseResultMap" type="com.evaluation.entity.Kpsh" >
+		<!-- id标签它对应的是数据库的主键，
+		它的column属性指代的是数据库的字段，
+		jdbcType属性指代的是数据库字段的类型, 
+		property属性指代的是对象的属性名称 -->
+		<id column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="khnd" property="khnd" jdbcType="VARCHAR"/>
+		<result column="khyf" property="khyf" jdbcType="VARCHAR"/>
+		<result column="bkhrid" property="bkhrid" jdbcType="VARCHAR"/>
+		<result column="bkhrxm" property="bkhrxm" jdbcType="VARCHAR"/>
+		<result column="df" property="df" jdbcType="VARCHAR"/>
+		<result column="khrid" property="khrid" jdbcType="VARCHAR"/>
+		<result column="khrxm" property="khrxm" jdbcType="VARCHAR"/>
+		<result column="deleteflag" property="deleteflag" jdbcType="VARCHAR"/>
+		<result column="opratetime" property="opratetime" jdbcType="TIMESTAMP"/>
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<!-- 自定义结果集 -->
+	<resultMap id="ViewResultMap" type="com.evaluation.view.Score">
+		<result column="khyf" property="khyf" jdbcType="VARCHAR"/>
+		<result column="df" property="df" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- sql标签是公用标签 -->
+	<sql id="base_sql">id, khnd, khyf, bkhrid, bkhrxm, df, khrid, khrxm, deleteflag, opratetime, createtime</sql>
+	
+	<!-- 获取当月成绩 -->
+	<select id="getCurrentScore" parameterType="java.lang.String" resultType="java.lang.Double">
+		select avg(df) as df from tb_kpsh
+		where deleteflag != 'D'
+		and khnd = #{khnd}
+		and khyf = #{khyf}
+		and bkhrid = #{bkhrid}
+		group by khnd, khyf
+	</select>
+	
+	<!-- 按年份获取成绩 -->
+	<select id="getScoreByYear" resultMap="ViewResultMap">
+		select khyf, avg(df) as df from tb_kpsh
+		where deleteflag != 'D'
+		and bkhrid = #{bkhrid}
+		and khnd = #{khnd}
+		group by khnd, khyf
+		order by khyf asc
+	</select>
+	
+	<!-- 插入考评审核信息 -->
+	<insert id="insertKpsh" parameterType="com.evaluation.entity.Kpsh">
+		insert into tb_kpsh
+		(<include refid="base_sql" />)
+		values (#{id}, #{khnd}, #{khyf}, #{bkhrid}, #{bkhrxm}, #{df}, 
+		#{khrid}, #{khrxm}, #{deleteflag}, #{opratetime}, #{createtime})
+	</insert>
+	
+</mapper>
